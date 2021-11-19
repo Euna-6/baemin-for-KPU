@@ -19,15 +19,17 @@
 		평점 rate
 	</div>
 	<div class="menu_list">
-		<dl>
-			<dt>메뉴선택</dt>
-			<dd>
-				<form action="http://localhost:8080/euna_mvcdb/StudentServlet?cmd=join" method="post">
-					메뉴이름1 <input type="checkbox" name="menu"><br>
-					메뉴이름2 <input type="checkbox" name="menu"><br>
-					메뉴이름3 <input type="checkbox" name="menu"><br>
-					메뉴이름4 <input type="checkbox" name="menu"><br>
-					메뉴이름5 <input type="checkbox" name="menu"><br>
+		<ul class="tabs">
+    		<li class="tab-link current" data-tab="tab-1">메뉴</li>
+    		<li class="tab-link" data-tab="tab-2">리뷰</li>
+  		</ul>
+
+  		<div id="tab-1" class="tab-content current">
+  			<form action="http://localhost:8080/euna_mvcdb/StudentServlet?cmd=join" method="post">
+					<input type="checkbox" name="menu" value="치즈피자">치즈피자 <br>
+					<input type="checkbox" name="menu" value="불고기피자">불고기피자 <br>
+					<input type="checkbox" name="menu" value="포테이토피자">포테이토피자 <br>
+					<input type="checkbox" name="menu" value="쉬림프피자">쉬림프피자 <br>
 					<br><br>
 					원하는 배달 장소<br>
 					<input type="radio" name="destination">A동<br>
@@ -40,14 +42,13 @@
 					<input type="submit" name="submit" value="주문하기">
 					<input type="reset" name="reset" value="다시 선택하기">
 				</form>
-			</dd>
-			
-			<dt>리뷰</dt>
-			<dd class="hidden">
-				이름 평점
-				<br>리뷰 내용
-			</dd>
-		</dl>
+  		</div>
+  		<div id="tab-2" class="tab-content">
+			이름 평점
+			<br>리뷰 내용
+		</div>
+	
+
 	</div>
 </body>
 </html>

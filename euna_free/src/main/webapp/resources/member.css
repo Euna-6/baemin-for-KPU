@@ -1,0 +1,102 @@
+@charset "UTF-8";
+@font-face {
+    src: url('BMJUA_ttf.ttf') format('truetype');
+    font-family: 'bmjua';
+}
+@font-face {
+    src: url('SDSwaggerTTF.ttf') format('truetype');
+    font-family: 'sds';
+}
+
+ul{
+	list-style:none;
+	text-align:center;
+	margin-left:20px; margin-right:20px;
+	padding-top:20px; padding-bottom:20px; padding-left:80px;
+}
+
+div{
+	text-align : center;
+	font-family: 'bmjua';	
+}
+table{
+	margin-left:auto; margin-right:auto;
+	padding:50px;
+}
+
+ul.tabs li.tab-link{
+  background: none;
+  color: #222;
+  display: inline-block;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+.tab-content{
+  display: none;
+  background: #ededed;
+  padding: 15px;
+}
+.tab-content.current{
+  display: inherit;
+}
+
+#login {
+	text-align:center;
+}
+
+#home_top{
+	background-color:#3EDECB;
+	height:80px;
+}
+
+#home_mypage{
+	position:absolute;
+	right:18px;
+	top:17px;
+}
+
+.menu_left{
+	float:left;
+	width:200px;
+	height:900px;
+	background-color:#3EDECB;
+	padding:30px;
+	margin-right:50px;
+}
+
+.foodType{
+	margin:35px;
+}
+
+.foodType_text{
+	text-align : center;
+	font-family: 'bmjua';
+	font-size:65px;
+}
+.foodType_text2{
+	text-align : center;
+	font-family: 'bmjua';
+	font-size:30px;
+	margin-top:20px;
+}
+.menu_list{
+	text-align: left;
+	padding-top:50px;
+}
+.inputs {
+	width:250px;
+	border:none;
+	border-bottom: solid 1px #ccc;
+	background:transparent;
+	padding:20px 0px 10px 0px;
+	font-family: 'sds';
+	font-size:20px;
+}
+
+.btn {
+	width:80px;
+	height:30px;
+	border:none;
+	background-color : #C1FFF1;
+	font-family: 'bmjua';
+}
