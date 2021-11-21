@@ -13,8 +13,8 @@
 <body>
 	<div class="menu_left">
 		<a href="home.html"><img src="img/back.png" width="80px"></a><br><br><br><br>
-		<img src="img/pizza.png" width="130px">
-		<p class="foodType_text2">피자</p>
+		<img src="img/chicken.png" width="130px">
+		<p class="foodType_text2">치킨</p>
 	</div>
 	<div class="menu_list">
 		<ul class="tabs">
@@ -26,10 +26,10 @@
   			<form action="order.jsp" method="post">
   					<table>
 	  					<jsp:useBean id="menu" class="kpu.web.club.domain.OrderVO"></jsp:useBean>
-						<c:forEach items="${menu.pizzaList}" var="pizza">
+						<c:forEach items="${menu.chickenList}" var="chicken">
 							<tr>
-								<td><input type="checkbox" name="menu" value="${pizza}"/></td>
-								<td>${pizza }</td>
+								<td><input type="checkbox" name="menu" value="${chicken}"/></td>
+								<td>${chicken }</td>
 							</tr>
 						</c:forEach>
 					</table>
