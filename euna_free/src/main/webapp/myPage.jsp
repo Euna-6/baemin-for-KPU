@@ -11,16 +11,28 @@
 	<div class="menu_left">
 		<a href="home.html"><img src="img/back.png" width="80px"></a><br><br><br><br>
 	</div>
-	<div>
+	<div style="padding-top:50px;">
 		<form action="http://localhost:8080/euna_free/MemberServlet?cmd=update" method="post">
-			<ul style="list-style:none;">
-				<li>아이디 : <input type="text" name="id" value="<%=session.getAttribute("id") %>" readonly></li>
-				<li>비밀번호 : <input type="password" name="passwd" value="<%=session.getAttribute("passwd") %>"></li>
-				<li>닉네임 : <input type="text" name="nickname" value="<%=session.getAttribute("nickname") %>"></li>
-				<li>핸드폰번호 : <input type="text" name="mobile" value="<%=session.getAttribute("mobile") %>"></li>
-			</ul>
-			<input type="submit" name="submit" value="수정">
-			<input type="reset" name="reset" value="원래대로">
+			<table>
+				<tr>
+					<td class="update">아이디 </td>
+					<td><input class="update" type="text" name="id" value="<%=session.getAttribute("id") %>" readonly></td>
+				</tr>
+				<tr>
+					<td class="update">비밀번호 </td>
+					<td><input class="update" type="password" name="passwd" value="<%=session.getAttribute("passwd") %>"></td>
+				</tr>
+				<tr>
+					<td class="update">닉네임 </td>
+					<td><input class="update" type="text" name="nickname" value="<%=session.getAttribute("nickname") %>"></td>
+				</tr>
+				<tr>
+					<td class="update">핸드폰번호 </td>
+					<td><input class="update" type="text" name="mobile" value="<%=session.getAttribute("mobile") %>"></td>
+				</tr>
+			</table>
+			<input class="btn" type="submit" name="submit" value="수정">
+			<input class="btn" type="reset" name="reset" value="원래대로">
 		</form>
 	</div>
 </body>

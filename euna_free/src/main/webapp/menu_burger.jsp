@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,10 +39,24 @@
 					<input type="reset" name="reset" value="다시 선택하기">
 				</form>
   		</div>
-  		<div id="tab-2" class="tab-content">
-			이름 평점
-			<br>리뷰 내용
+  		<div id="tab-2" class="tab-content" style="text-align:left;">
+  			<form action="http://localhost:8080/euna_free/ReviewServlet?cmd=reviewAdd&foodType=burger" method="post">
+				<input class="inputNick" type="text" name="nickname" value="<%=session.getAttribute("nickname")%>" readonly><br>
+				<input class="inputContent" type="text" name="content" placeholder="리뷰내용"><br>
+				<input class="btn" type="submit" name="submit" value="리뷰등록"><br>
+			</form>
+			<br><br><br>
+			<div class="reviewTab">
+				<sql:query var="rs" dataSource="jdbc/mysql">
+					select nickname, content from review where foodType="burger"
+				</sql:query>
+				<c:forEach var="row" items="${rs.rows}">
+					<p class="reviewNick">${row.nickname}</p>
+					<p class="reviewContent">${row.content }</p><br><hr><br>
+				</c:forEach>
+			</div>
 		</div>
+		
 	
 
 	</div>
