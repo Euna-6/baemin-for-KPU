@@ -43,9 +43,37 @@ public class MemberDAO {
 		}
 	}
 	
+	
+	public String[] login(String id, String passwd) {
+		connect();
+		String sql = "select * from Membership where id=? and passwd=?";
+		String[] arr1 = new String[2];
+		//String nickname = null;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, passwd);
+			ResultSet rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				arr1[0] = rs.getString("nickname");
+				arr1[1] = rs.getString("mobile");
+			}
+			rs.close();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		return arr1;
+		
+	}
+	
+	
 	public boolean add( MemberVO vo ) {
 		connect();
-		String sql = "insert into MEMBERSHIP values (?,?,?,?)";
+		String sql = "insert into Membership values (?,?,?,?)";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, vo.getId());
@@ -62,11 +90,12 @@ public class MemberDAO {
 		return true;
 	}
 	
+	
 	public MemberVO read(String id) {
 		connect();
 		
 		MemberVO vo = new MemberVO();
-		String sql = "select * from MEMBERSHIP where id='"+id+"'";
+		String sql = "select * from Membership where id='"+id+"'";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();
@@ -85,9 +114,11 @@ public class MemberDAO {
 		return vo;
 	}
 	
+	
+	
 	public boolean update(MemberVO vo) {
 		connect();
-		String sql = "update student set id=?, passwd=?, nickname=?, mobile=? where id = '"+ vo.getId()+"'";
+		String sql = "update Membership set id=?, passwd=?, nickname=?, mobile=? where id = '"+ vo.getId()+"'";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, vo.getId());
@@ -104,10 +135,30 @@ public class MemberDAO {
 		return true;
 	}
 	
+	
+	public boolean delete(MemberVO vo) {
+		connect();
+		String sql = "delete from Membership where id=? AND passwd=?;";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, vo.getId());
+			pstmt.setString(2, vo.getPasswd());
+			pstmt.executeUpdate();
+		} catch(SQLException e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			disconnect();
+		}
+		return true;
+	}
+	
+	
+	/*
 	public ArrayList<MemberVO> getMemberList() {
 		connect();
 		ArrayList<MemberVO> memberList = new ArrayList<MemberVO>();
-		String sql = "select * from MEMBERSHIP";
+		String sql = "select * from Membership";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();
@@ -127,4 +178,5 @@ public class MemberDAO {
 		}
 		return memberList;
 	}
+	*/
 }

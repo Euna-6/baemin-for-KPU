@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
 <%request.setCharacterEncoding("UTF-8"); %>
 <!DOCTYPE html>
 <html>
@@ -22,10 +23,12 @@
 		<br><br>
 		<form action="complete.jsp" method="post">
 			원하는 배달 장소<br><br>
-			<jsp:useBean id="destination" class="kpu.web.club.domain.OrderVO"></jsp:useBean>
+			<sql:query var="rs" dataSource="jdbc/mysql">
+					select * from destination;
+				</sql:query>
 			<select name="des">
-				<c:forEach items="${destination.desList }" var="item">
-					<option>${item }</option>
+				<c:forEach var="row" items="${rs.rows}">
+					<option>${row.destination}</option>
 				</c:forEach>
 			</select>
 			<br><br>

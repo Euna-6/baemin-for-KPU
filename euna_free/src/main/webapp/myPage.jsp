@@ -34,6 +34,8 @@
 			<input class="btn" type="submit" name="submit" value="수정">
 			<input class="btn" type="reset" name="reset" value="원래대로">
 		</form>
+		<br>
+		<a style="font-size:13px;" href="withdraw.jsp" target="_self">회원탈퇴</a>
 	</div>
 </body>
 </html>

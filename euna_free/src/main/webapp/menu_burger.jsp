@@ -25,19 +25,21 @@
 
   		<div id="tab-1" class="tab-content current">
   			<form action="order.jsp" method="post">
-  					<table>
-	  					<jsp:useBean id="menu" class="kpu.web.club.domain.OrderVO"></jsp:useBean>
-						<c:forEach items="${menu.burgerList}" var="burger">
-							<tr>
-								<td><input type="checkbox" name="menu" value="${burger}"/></td>
-								<td>${burger }</td>
-							</tr>
-						</c:forEach>
-					</table>
-					<br><br>
-					<input type="submit" name="submit" value="주문하기">
-					<input type="reset" name="reset" value="다시 선택하기">
-				</form>
+  				<sql:query var="rs" dataSource="jdbc/mysql">
+					select menuName, menuPrice from menu where foodType="burger"
+				</sql:query>
+				<table class="menu">
+					<c:forEach var="row" items="${rs.rows}">
+					<tr>
+						<td class="menuName"><input type="checkbox" name="menu" value="${row.menuName}"/>${row.menuName}</td>
+						<td class="menuPrice">${row.menuPrice}원</td>
+					</tr>
+				</c:forEach>
+				</table>
+				<br><br>
+				<input type="submit" name="submit" value="주문하기">
+				<input type="reset" name="reset" value="다시 선택하기">
+			</form>
   		</div>
   		<div id="tab-2" class="tab-content" style="text-align:left;">
   			<form action="http://localhost:8080/euna_free/ReviewServlet?cmd=reviewAdd&foodType=burger" method="post">

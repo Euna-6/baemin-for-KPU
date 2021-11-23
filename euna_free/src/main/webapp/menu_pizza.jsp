@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,24 +25,40 @@
 
   		<div id="tab-1" class="tab-content current">
   			<form action="order.jsp" method="post">
-  					<table>
-	  					<jsp:useBean id="menu" class="kpu.web.club.domain.OrderVO"></jsp:useBean>
-						<c:forEach items="${menu.pizzaList}" var="pizza">
-							<tr>
-								<td><input type="checkbox" name="menu" value="${pizza}"/></td>
-								<td>${pizza }</td>
-							</tr>
-						</c:forEach>
-					</table>
-					<br><br>
-					<input type="submit" name="submit" value="주문하기">
-					<input type="reset" name="reset" value="다시 선택하기">
-				</form>
+  				<sql:query var="rs" dataSource="jdbc/mysql">
+					select menuName, menuPrice from menu where foodType="pizza"
+				</sql:query>
+				<table class="menu">
+					<c:forEach var="row" items="${rs.rows}">
+					<tr>
+						<td class="menuName"><input type="checkbox" name="menu" value="${row.menuName}"/>${row.menuName}</td>
+						<td class="menuPrice">${row.menuPrice}원</td>
+					</tr>
+				</c:forEach>
+				</table>
+				<br><br>
+				<input type="submit" name="submit" value="주문하기">
+				<input type="reset" name="reset" value="다시 선택하기">
+			</form>
   		</div>
-  		<div id="tab-2" class="tab-content">
-			이름 평점
-			<br>리뷰 내용
+  		<div id="tab-2" class="tab-content" style="text-align:left;">
+  			<form action="http://localhost:8080/euna_free/ReviewServlet?cmd=reviewAdd&foodType=pizza" method="post">
+				<input class="inputNick" type="text" name="nickname" value="<%=session.getAttribute("nickname")%>" readonly><br>
+				<input class="inputContent" type="text" name="content" placeholder="리뷰내용"><br>
+				<input class="btn" type="submit" name="submit" value="리뷰등록"><br>
+			</form>
+			<br><br><br>
+			<div class="reviewTab">
+				<sql:query var="rs" dataSource="jdbc/mysql">
+					select nickname, content from review where foodType="pizza"
+				</sql:query>
+				<c:forEach var="row" items="${rs.rows}">
+					<p class="reviewNick">${row.nickname}</p>
+					<p class="reviewContent">${row.content }</p><br><hr><br>
+				</c:forEach>
+			</div>
 		</div>
+		
 	
 
 	</div>
